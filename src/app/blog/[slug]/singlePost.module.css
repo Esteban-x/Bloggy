@@ -1,4 +1,5 @@
 .container {
+  margin-top: 3vh;
   display: flex;
   gap: 100px;
 }
@@ -9,7 +10,7 @@
   height: calc(100vh - 200px);
 }
 
-.img{
+.img {
   object-fit: cover;
 }
 
@@ -20,36 +21,36 @@
   gap: 50px;
 }
 
-.title{
+.title {
   font-size: 64px;
 }
 
-.detail{
+.detail {
   display: flex;
   gap: 20px;
 }
 
-.detailText{
+.detailText {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.detailTitle{
+.detailTitle {
   color: gray;
   font-weight: bold;
 }
 
-.detailValue{
+.detailValue {
   font-weight: 500;
 }
 
-.content{
+.content {
   font-size: 20px;
 }
 
-@media (max-width:768px){
-  .imgContainer{
+@media (max-width: 768px) {
+  .imgContainer {
     display: none;
   }
 }

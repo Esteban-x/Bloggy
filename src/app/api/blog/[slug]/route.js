@@ -1,31 +1,31 @@
-import { Post } from "@/lib/models";
-import { connectToDb } from "@/lib/utils";
-import { NextResponse } from "next/server";
+import { Post } from '@/lib/models'
+import { connectToDb } from '@/lib/utils'
+import { NextResponse } from 'next/server'
 
 export const GET = async (request, { params }) => {
-  const { slug } = params;
+  const { slug } = params
 
   try {
-    connectToDb();
+    connectToDb()
 
-    const post = await Post.findOne({ slug });
-    return NextResponse.json(post);
+    const post = await Post.findOne({ slug })
+    return NextResponse.json(post)
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to fetch post!");
+    console.log(err)
+    throw new Error("Le post n'a pas été récupéré !")
   }
-};
+}
 
 export const DELETE = async (request, { params }) => {
-  const { slug } = params;
+  const { slug } = params
 
   try {
-    connectToDb();
+    connectToDb()
 
-    await Post.deleteOne({ slug });
-    return NextResponse.json("Post deleted");
+    await Post.deleteOne({ slug })
+    return NextResponse.json('Post supprimé')
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to delete post!");
+    console.log(err)
+    throw new Error("Le post n'a pas été supprimé !")
   }
-};
+}

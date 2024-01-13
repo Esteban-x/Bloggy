@@ -1,31 +1,31 @@
-import NextAuth from "next-auth";
-import GitHub from "next-auth/providers/github";
-import CredentialsProvider from "next-auth/providers/credentials";
-import { connectToDb } from "./utils";
-import { User } from "./models";
-import bcrypt from "bcryptjs";
-import { authConfig } from "./auth.config";
+import NextAuth from 'next-auth'
+import GitHub from 'next-auth/providers/github'
+import CredentialsProvider from 'next-auth/providers/credentials'
+import { connectToDb } from './utils'
+import { User } from './models'
+import bcrypt from 'bcryptjs'
+import { authConfig } from './auth.config'
 
 const login = async (credentials) => {
   try {
-    connectToDb();
-    const user = await User.findOne({ username: credentials.username });
+    connectToDb()
+    const user = await User.findOne({ username: credentials.username })
 
-    if (!user) throw new Error("Wrong credentials!");
+    if (!user) throw new Error('Identifiants incorrect')
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
-      user.password
-    );
+      user.password,
+    )
 
-    if (!isPasswordCorrect) throw new Error("Wrong credentials!");
+    if (!isPasswordCorrect) throw new Error('Identifiants incorrect')
 
-    return user;
+    return user
   } catch (err) {
-    console.log(err);
-    throw new Error("Failed to login!");
+    console.log(err)
+    throw new Error('Erreur lors de la connexion')
   }
-};
+}
 
 export const {
   handlers: { GET, POST },
@@ -42,37 +42,37 @@ export const {
     CredentialsProvider({
       async authorize(credentials) {
         try {
-          const user = await login(credentials);
-          return user;
+          const user = await login(credentials)
+          return user
         } catch (err) {
-          return null;
+          return null
         }
       },
     }),
   ],
   callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account.provider === "github") {
-        connectToDb();
+    async signIn({ account, profile }) {
+      if (account.provider === 'github') {
+        connectToDb()
         try {
-          const user = await User.findOne({ email: profile.email });
+          const user = await User.findOne({ email: profile.email })
 
           if (!user) {
             const newUser = new User({
               username: profile.login,
               email: profile.email,
               image: profile.avatar_url,
-            });
+            })
 
-            await newUser.save();
+            await newUser.save()
           }
         } catch (err) {
-          console.log(err);
-          return false;
+          console.log(err)
+          return false
         }
       }
-      return true;
+      return true
     },
     ...authConfig.callbacks,
   },
-});
+})

@@ -1,27 +1,26 @@
-"use client"
-import Link from "next/link"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+'use client'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const NavigationTestPage = () => {
-
-  // CLIENT SIDE NAVIGATION
   const router = useRouter()
-  const pathname = usePathname()
   const searchParams = useSearchParams()
 
-  const q = searchParams.get("q")
+  const q = searchParams.get('q')
 
   console.log(q)
 
-  const handleClick = ()=>{
-    console.log("clicked")
+  const handleClick = () => {
+    console.log('cest ok')
     router.forward()
   }
 
   return (
     <div>
-      <Link href="/" prefetch={false}>Click here</Link>
-      <button onClick={handleClick}>Write and Redirect</button>
+      <Link href="/" prefetch={false}>
+        Test
+      </Link>
+      <button onClick={handleClick}>Test</button>
     </div>
   )
 }

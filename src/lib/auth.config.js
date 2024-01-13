@@ -1,49 +1,42 @@
 export const authConfig = {
   pages: {
-    signIn: "/login",
+    signIn: '/login',
   },
   providers: [],
   callbacks: {
-    // FOR MORE DETAIL ABOUT CALLBACK FUNCTIONS CHECK https://next-auth.js.org/configuration/callbacks
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.isAdmin = user.isAdmin;
+        token.id = user.id
+        token.isAdmin = user.isAdmin
       }
-      return token;
+      return token
     },
     async session({ session, token }) {
       if (token) {
-        session.user.id = token.id;
-        session.user.isAdmin = token.isAdmin;
+        session.user.id = token.id
+        session.user.isAdmin = token.isAdmin
       }
-      return session;
+      return session
     },
     authorized({ auth, request }) {
-      const user = auth?.user;
-      const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
-      const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");
-      const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login");
-
-      // ONLY ADMIN CAN REACH THE ADMIN DASHBOARD
+      const user = auth?.user
+      const isOnAdminPanel = request.nextUrl?.pathname.startsWith('/admin')
+      const isOnBlogPage = request.nextUrl?.pathname.startsWith('/blog')
+      const isOnLoginPage = request.nextUrl?.pathname.startsWith('/login')
 
       if (isOnAdminPanel && !user?.isAdmin) {
-        return false;
+        return false
       }
-
-      // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
 
       if (isOnBlogPage && !user) {
-        return false;
+        return false
       }
 
-      // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
-
       if (isOnLoginPage && user) {
-        return Response.redirect(new URL("/", request.nextUrl));
+        return Response.redirect(new URL('/', request.nextUrl))
       }
 
       return true
     },
   },
-};
+}

@@ -1,53 +1,56 @@
-import Image from "next/image";
-import styles from "./about.module.css";
+import Image from 'next/image'
+import styles from './about.module.css'
 
 export const metadata = {
-  title: "About Page",
-  description: "About description",
-};
-
+  title: 'Page à propos',
+  description: 'Description à propos',
+}
 
 const AboutPage = () => {
-
-  // console.log("lets check where it works")
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2 className={styles.subtitle}>About Agency</h2>
-        <h1 className={styles.title}>
-          We create digital ideas that are bigger, bolder, braver and better.
-        </h1>
+        <h2 className={styles.subtitle}>
+          Une expérience de navigation fluide et enrichissante
+        </h2>
+        <h1 className={styles.title}>À propos de notre plateforme</h1>
         <p className={styles.desc}>
-          We create digital ideas that are bigger, bolder, braver and better. We
-          believe in good ideas flexibility and precission We’re world’s Our
-          Special Team best consulting & finance solution provider. Wide range
-          of web and software development services.
+          Notre plateforme offre une expérience de navigation exceptionnellement
+          fluide et intuitive. Grâce à notre système de publication optimisé,
+          partager vos idées n&apos;a jamais été aussi simple. Profitez
+          d&apos;une interface conviviale, d&apos;un chargement rapide des pages
+          et d&apos;une interaction sans effort avec les autres utilisateurs. De
+          plus, notre plateforme est conçue pour s&apos;adapter à tous les
+          appareils, vous offrant une expérience de qualité, que vous soyez sur
+          un ordinateur de bureau, un ordinateur portable, une tablette ou un
+          smartphone. Rejoignez-nous et découvrez une nouvelle façon de partager
+          et de découvrir des idées
         </p>
         <div className={styles.boxes}>
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Year of experience</p>
+            <h1>3 500+</h1>
+            <p>Publications partagées</p>
           </div>
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Year of experience</p>
+            <h1>2 000+</h1>
+            <p>Utilisateurs satisfaits</p>
           </div>
           <div className={styles.box}>
-            <h1>10 K+</h1>
-            <p>Year of experience</p>
+            <h1>1 000+</h1>
+            <p>Sujets abordés</p>
           </div>
         </div>
       </div>
       <div className={styles.imgContainer}>
         <Image
           src="/about.png"
-          alt="About Image"
+          alt="Image à propos"
           fill
           className={styles.img}
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutPage;
+export default AboutPage

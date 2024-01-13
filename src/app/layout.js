@@ -1,31 +1,28 @@
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
-import ClientSideProviderTest from "@/components/clientSideProviderTest";
+import { Inter } from 'next/font/google'
+import './globals.css'
+import Navbar from '@/components/navbar/Navbar'
+import Footer from '@/components/footer/Footer'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: {
-    default:"Next.js 14 Homepage",
-    template:"%s | Next.js 14"
+    default: 'Bloggy',
+    template: '%s | Bloggy',
   },
-  description: "Next.js starter app description",
-};
+  description: 'Blog',
+}
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={inter.className}>
-        {/* <ClientSideProviderTest> */}
-          <div className="container">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
-        {/* </ClientSideProviderTest> */}
+        <div className="container">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
-  );
+  )
 }
