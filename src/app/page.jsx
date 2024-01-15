@@ -8,8 +8,9 @@ const Home = () => {
         <h1 className={styles.title}>Bienvenue sur Bloggy</h1>
         <p className={styles.desc}>
           N&apos;oubliez pas de créer un compte si vous souhaitez consulter les
-          différents posts des utilisateurs ainsi que pouvoir publier des posts.
-          Profitez pleinement de votre expérience sur notre site !
+          différents posts des utilisateurs. Contactez le webmaster pour obtenir
+          les droits administrateur afin de pouvoir publier des posts et bien
+          plus encore. Profitez pleinement de votre expérience sur notre site !
         </p>
         <div className={styles.buttons}>
           <button className={styles.button}>En savoir plus</button>
@@ -26,7 +27,7 @@ const Home = () => {
       </div>
       <div className={styles.imgContainer}>
         <Image
-          src="/hero.gif"
+          src="/camera-2.jpg"
           alt="
           Image de l'acceuil"
           fill

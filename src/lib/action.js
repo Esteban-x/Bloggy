@@ -5,6 +5,7 @@ import { Post, User } from './models'
 import { connectToDb } from './utils'
 import { signIn, signOut } from './auth'
 import bcrypt from 'bcryptjs'
+import nodemailer from 'nodemailer'
 
 export const addPost = async (prevState, formData) => {
   const { title, desc, slug, userId, img } = Object.fromEntries(formData)
@@ -90,6 +91,38 @@ export const handleGithubLogin = async () => {
 export const handleLogout = async () => {
   'use server'
   await signOut()
+}
+
+export const sendEmail = async (previousState, formData) => {
+  const { name, email, phone, message } = Object.fromEntries(formData)
+
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+  })
+
+  let mailOptions = {
+    from: email,
+    to: process.env.EMAIL,
+    subject: 'Message utilisateur Bloggy',
+    text: `Nom et prénom: ${name}\nAdresse email: ${email}\nNuméro de téléphone: ${phone}\nMessage: ${message}`,
+    html: `<p>Nom et prénom: ${name}</p><p>Adresse email: ${email}</p><p>Numéro de téléphone: ${phone}</p><p>Message: ${message}</p>`,
+  }
+
+  try {
+    await transporter.sendMail(mailOptions)
+    console.log('Email envoyé')
+    return { success: true }
+  } catch (error) {
+    console.log(error)
+    return {
+      success: false,
+      error: "Un problème est survenu lors de l'envoi de l'e-mail.",
+    }
+  }
 }
 
 export const register = async (previousState, formData) => {

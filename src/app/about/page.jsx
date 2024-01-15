@@ -10,9 +10,6 @@ const AboutPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2 className={styles.subtitle}>
-          Une expérience de navigation fluide et enrichissante
-        </h2>
         <h1 className={styles.title}>À propos de notre plateforme</h1>
         <p className={styles.desc}>
           Notre plateforme offre une expérience de navigation exceptionnellement
