@@ -29,7 +29,7 @@ const Home = () => {
         <Image
           src="/camera-2.jpg"
           alt="
-          Image de l'acceuil"
+          Image de la page d'acceuil"
           fill
           className={styles.heroImg}
         />
